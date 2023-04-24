@@ -192,7 +192,7 @@ router.post('/forgot', (req, res) => {
           const token = jwt.sign({ email: user.email, id: user._id }, secret, {
             expiresIn: '5m',
           });
-          const link = `http://localhost:5000/users/reset/${user._id}/${token}`;
+          const link = `https://programming-club-daiict.up.railway.app/users/reset/${user._id}/${token}`;
 
           var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -204,7 +204,7 @@ router.post('/forgot', (req, res) => {
 
           var mailOptions = {
             from: 'programming.club.daiict1@gmail.com',
-            to: 'kishansangani78@gmail.com',
+            to: email,
             subject: 'Password Reset',
             text: link,
           };
