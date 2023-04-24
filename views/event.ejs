@@ -1,0 +1,65 @@
+<body class="bg-light">
+    
+    <%- include('includes/navbar.ejs') %>
+    
+    <div class="main_container bg-light">
+        <% if(practices.length == 0){ %>
+            <h1>No Events Found</h1>
+        <% } %>
+        <% if(practices.length != 0){ %>
+            <div class="text-primary" style="width: 100%; text-align: center;"><h1>Events</h1></div>
+        <% practices.forEach(function (practice,index) { %>
+            <div class="card text-white bg-primary mx-3 my-3" id="<%= practice._id %>" key = "<%= practice._id %>" style="max-width: 20rem;">
+                <div class="card-header"><h4><%= practice.name %></h4></div>
+                <div class="card-body">
+                  <p class="card-text"><b>Date : </b><%= practice.date %></p>
+                  <p class="card-text"><b>Duration : </b><%= practice.duration %> Hour</p>
+                  <p class="card-text"><b>Venue : </b><%= practice.venue %></p>
+                  <p class="card-text"><%= practice.description %></p>
+                  <!-- <form action="/event" method="post"> -->
+                    <button type="button" id="<%= practice._id %>" class="btn btn-success btn-sm" onclick ="register(this.id)" key = "<%= practice._id %>" >Register</button>
+                  <!-- </form> -->
+                </div>
+            </div>
+        <% }) %>
+        <% } %>
+        
+    </div>
+</body>
+
+<script>
+    const register = (id) => {
+        //console.log(id);
+        // var e = document.getElementById(id).attributes;
+        // console.log(e);
+
+        const eventdata = {
+            event_id : id,
+            user_id : "<%= user._id %>"
+        }
+
+        // console.log(eventdata)
+        // console.log(JSON.stringify(eventdata))
+
+        fetch('/event',{
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(eventdata),
+        })
+
+        alert("Registered Successfully");
+
+  };
+</script>
+
+<style>
+    .main_container{
+    margin: 50px;
+    display : flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+</style>
