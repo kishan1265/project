@@ -8,7 +8,7 @@
         <%- include ("../partials/messages") %>
         <div class="text-primary" style="width: 100%; text-align: center;"><h1>Resource</h1></div>
     <% backend_resources.forEach(function (resource,index) { %>
-        <div class="card text-white bg-secondary mx-3 my-3" id="<%= resource._id %>" key = "<%= resource._id %>" style="width: 25rem;">
+        <div class="card text-white bg-secondary mx-1 my-1" id="<%= resource._id %>" key = "<%= resource._id %>" style="width: 25rem;">
             <div class="card-header"><h4><%= resource.title %></h4></div>
             <div class="card-body">
               <!-- <p class="card-text"><b>Date : </b><%= resource.date %></p>
