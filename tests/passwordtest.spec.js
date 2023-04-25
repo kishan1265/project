@@ -24,23 +24,23 @@ function isStrongPassword(password) {
 }
 
 test('Password is Strong enough for security', () => {
-  expect(isStrongPassword('202001265@daiict.ac.in')).toBe(true);
-  expect(isStrongPassword('202001276@daiict.ac.in')).toBe(true);
-  expect(isStrongPassword('202001426@daiict.ac.in')).toBe(true);
-  expect(isStrongPassword('202001267@daiict.ac.in')).toBe(true);
-  expect(isStrongPassword('202001241@daiict.ac.in')).toBe(true);
-  expect(isStrongPassword('202001139@daiict.ac.in')).toBe(true);
-  expect(isStrongPassword('202001254@daiict.ac.in')).toBe(true);
-  expect(isStrongPassword('202001266@daiict.ac.in')).toBe(true);
+  expect(isStrongPassword('Chalodiya@76')).toBe(true);
+  expect(isStrongPassword('Sanghani$65')).toBe(true);
+  expect(isStrongPassword('Archit#74')).toBe(true);
+  expect(isStrongPassword('Adhiya@77')).toBe(true);
+  expect(isStrongPassword('Fenil@123')).toBe(true);
+  expect(isStrongPassword('Krunal%987')).toBe(true);
+  expect(isStrongPassword('Deep@@00')).toBe(true);
+  expect(isStrongPassword('Tushar.678')).toBe(true);
 });
 
 test('Password is not Strong enough for security', () => {
-  expect(isStrongPassword('202001265@gmail.com')).toBe(false);
-  expect(isStrongPassword('20200@daiict.ac.in')).toBe(false);
-  expect(isStrongPassword('20200426@daiict.ac.in')).toBe(false);
-  expect(isStrongPassword('198001267@daiict.ac.in')).toBe(false);
-  expect(isStrongPassword('002001241@daiict.ac.in')).toBe(false);
-  expect(isStrongPassword('102001139@daiict.ac.in')).toBe(false);
-  expect(isStrongPassword('202001254@daiict.in')).toBe(false);
-  expect(isStrongPassword('202001266@gmail.ac.in')).toBe(false);
+  expect(isStrongPassword('archit12345')).toBe(false);
+  expect(isStrongPassword('Abc@1')).toBe(false);
+  expect(isStrongPassword('kishansanghani65')).toBe(false);
+  expect(isStrongPassword('omchalodiya')).toBe(false);
+  expect(isStrongPassword('leadtester')).toBe(false);
+  expect(isStrongPassword('123456789')).toBe(false);
+  expect(isStrongPassword('aa11bb33')).toBe(false);
+  expect(isStrongPassword('qwertyuiop')).toBe(false);
 });
