@@ -364,7 +364,7 @@ router.post('/delete_admin', (req, res) => {
   }
 });
 
-// Register
+// Add Event
 router.post('/event', (req, res) => {
   //console.log(req.body);
   // res.send('hello');

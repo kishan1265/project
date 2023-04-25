@@ -27,8 +27,31 @@ router.get('/forgot', (req, res) => res.render('forgot'));
 //reset-password page
 //router.get('/reset', (req, res) => res.render('reset'));
 
-// Register
+function isStrongPassword(password) {
+  const minLength = 8; // Minimum length requirement
+  const maxLength = 64; // Maximum length requirement
+  const hasUpperCase = /[A-Z]/.test(password); // Upper case letters requirement
+  const hasLowerCase = /[a-z]/.test(password); // Lower case letters requirement
+  const hasNumber = /[0-9]/.test(password); // Numbers requirement
+  const hasSpecialChar = /[$&+,:;=?@#|'<>.^*()%!-]/.test(password); // Special characters requirement
+  const isCommonPassword = /password|123456|qwerty/i.test(password); // Common password check
 
+  if (password.length < minLength || password.length > maxLength) {
+    return false;
+  }
+
+  if (!hasUpperCase || !hasLowerCase || !hasNumber || !hasSpecialChar) {
+    return false;
+  }
+
+  if (isCommonPassword) {
+    return false;
+  }
+
+  return true;
+}
+
+// Register
 router.post('/register', (req, res) => {
   //console.log(req.body);
   // res.send('hello');
@@ -65,15 +88,21 @@ router.post('/register', (req, res) => {
     errors.push({ msg: 'Please Register using correct daiict Id' });
   }
 
+  if (!isStrongPassword(password)) {
+    errors.push({
+      msg: 'Password must be at least 8 characters long and must contain at least one upper case letter, one lower case letter, one number and one special character',
+    });
+  }
+
   if (password != password2) {
     //check passwords match
     errors.push({ msg: 'Passwords do not match' });
   }
 
   //check passwords match
-  if (password.length < 6) {
-    errors.push({ msg: 'Password must be at least 6 characters' });
-  }
+  // if (password.length < 6) {
+  //   errors.push({ msg: 'Password must be at least 6 characters' });
+  // }
 
   if (errors.length > 0) {
     res.render('register', {
