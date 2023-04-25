@@ -331,7 +331,7 @@ router.post(`/reset/:id/:token`, (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render(`reset/${user._id}/${token}`, {
+    res.render(`reset`, {
       errors,
     });
   }
