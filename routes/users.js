@@ -324,6 +324,17 @@ router.post(`/reset/:id/:token`, (req, res) => {
   let errors = [];
   // console.log(password);
   // console.log(req.params);
+  if (!isStrongPassword(password)) {
+    errors.push({
+      msg: 'Password must be at least 8 characters long and must contain at least one upper case letter, one lower case letter, one number and one special character',
+    });
+  }
+
+  if (errors.length > 0) {
+    res.render(`reset/${user._id}/${token}`, {
+      errors,
+    });
+  }
 
   //res.send('pass');
   User.findOne({ _id: id }).then((user) => {
