@@ -171,9 +171,9 @@ router.post('/register', (req, res) => {
                   to: email,
                   subject: 'Congrats!! Welcome to Programming Club',
                   html:
-                    '<p>Hi,</p> <br><br> <h1>Welcome to the Programming Club website.</h1><p>You have created this account with the email: ' +
+                    '<h3>Hi,</h3><h1>Welcome to the Programming Club website.</h1><h3>You have created this account with the email: ' +
                     email +
-                    '</p><button style="appearance: none; border: none; font-size: inherit;border-radius: 2em;padding: 0.75em 1em;background: blue;color: white;display: inline-flex;align-items: center;" href="https://programming-club-daiict.up.railway.app/users/login">Login</button> <p>Note: If not done by you, visit the website and proceed with the forgot password procedure.</p><p>Happy Coding!!</p><p>Team Programming Club;</p>',
+                    '</h3><a href="https://programming-club-daiict.up.railway.app/users/login"><button style="appearance: none; border: none; font-size: inherit;border-radius: 2em;padding: 0.75em 1em;background: blue;color: white;display: inline-flex;align-items: center;">Login</button></a> <h3>Note: If not done by you, visit the website and proceed with the forgot password procedure.</h3><h3>Happy Coding!!</h3><h3>Team Programming Club</h3>',
                 };
 
                 transporter.sendMail(mailOptions, function (error, info) {
