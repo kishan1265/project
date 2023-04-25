@@ -28,7 +28,7 @@ router.get('/forgot', (req, res) => res.render('forgot'));
 //router.get('/reset', (req, res) => res.render('reset'));
 
 function isStrongPassword(password) {
-  const minLength = 8; // Minimum length requirement
+  const minLength = 6; // Minimum length requirement
   const maxLength = 64; // Maximum length requirement
   const hasUpperCase = /[A-Z]/.test(password); // Upper case letters requirement
   const hasLowerCase = /[a-z]/.test(password); // Lower case letters requirement
@@ -251,7 +251,7 @@ router.post('/forgot', (req, res) => {
           res.render('emailvarify', { email: user.email });
         } catch (error) {}
       } else {
-        errors.push({ msg: 'Email not exists' });
+        errors.push({ msg: 'This email is not registered yet' });
         res.render('forgot', {
           errors,
           email,
