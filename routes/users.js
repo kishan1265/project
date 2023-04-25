@@ -44,9 +44,9 @@ function isStrongPassword(password) {
     return false;
   }
 
-  if (isCommonPassword) {
-    return false;
-  }
+  // if (isCommonPassword) {
+  //   return false;
+  // }
 
   return true;
 }
