@@ -159,38 +159,9 @@ router.get(
 router.post('/edit_profile', (req, res) => {
   console.log(req.body);
   // res.send('hello');
-  const { name, email, programe, batch, cfprofile, address } = req.body;
-  // let errors = [];
+  const { name, programe, batch, cfprofile, address } = req.body;
+  const email = req.user.email;
 
-  // // //console.log(programe);
-  // // //check required fields
-  // if (!name || !email || programe == '0' || batch == '0') {
-  //   errors.push({ msg: 'Please enter all fields' });
-  // }
-
-  // //check email id of daiict
-  // if (
-  //   email.substr(-13, 13) != '@daiict.ac.in' ||
-  //   email[1] != '0' ||
-  //   email[0] != '2' ||
-  //   !(email[4] == '0' || email[4] == '1' || email[4] == '2') ||
-  //   !(
-  //     email[5] == '0' ||
-  //     email[5] == '1' ||
-  //     email[5] == '2' ||
-  //     email[5] == '3'
-  //   ) ||
-  //   email[6] >= '6'
-  // ) {
-  //   errors.push({ msg: 'Please Register using correct daiict Id' });
-  // }
-
-  // if (errors.length > 0) {
-  //   res.render('edit_profile', {
-  //     errors,
-  //   });
-  // } else {
-  //res.send('pass');
   User.findOne({ email: email }).then((user) => {
     //console.log(user);
     try {
