@@ -34,7 +34,7 @@ function isStrongPassword(password) {
   const hasLowerCase = /[a-z]/.test(password); // Lower case letters requirement
   const hasNumber = /[0-9]/.test(password); // Numbers requirement
   const hasSpecialChar = /[$&+,:;=?@#|'<>.^*()%!-]/.test(password); // Special characters requirement
-  const isCommonPassword = /password|123456|qwerty/i.test(password); // Common password check
+  //const isCommonPassword = /password|123456|qwerty/i.test(password); // Common password check
 
   if (password.length < minLength || password.length > maxLength) {
     return false;
@@ -147,6 +147,42 @@ router.post('/register', (req, res) => {
                   'success_msg',
                   'You are now registered and can log in'
                 );
+
+                var transporter = nodemailer.createTransport({
+                  service: 'gmail',
+                  auth: {
+                    user: 'programming.club.daiict1@gmail.com',
+                    pass: 'eevoxrcznbpnupey',
+                  },
+                });
+
+                // var mailtext =
+
+                // Welcome to the Programming Club website.
+                // You have created this account with the email: #usermail
+
+                // Note: If not done by you, visit the website and proceed with the forgot password procedure.
+
+                // Happy Coding!!
+                // Team Programming Club;
+
+                var mailOptions = {
+                  from: 'programming.club.daiict1@gmail.com',
+                  to: email,
+                  subject: 'Congrats!! Welcome to Programming Club',
+                  html:
+                    '<p>Hi,</p> <br><br> <h1>Welcome to the Programming Club website.</h1><p>You have created this account with the email: ' +
+                    email +
+                    '</p><button style="appearance: none; border: none; font-size: inherit;border-radius: 2em;padding: 0.75em 1em;background: blue;color: white;display: inline-flex;align-items: center;" href="https://programming-club-daiict.up.railway.app/users/login">Login</button> <p>Note: If not done by you, visit the website and proceed with the forgot password procedure.</p><p>Happy Coding!!</p><p>Team Programming Club;</p>',
+                };
+
+                transporter.sendMail(mailOptions, function (error, info) {
+                  if (error) {
+                    console.log(error);
+                  } else {
+                    console.log('Email sent: ' + info.response);
+                  }
+                });
                 res.redirect('/users/login');
               })
               .catch((err) => console.log(err));

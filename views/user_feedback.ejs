@@ -11,8 +11,8 @@
           <%- include ("./partials/messages") %>
           <form action="/feedback" method="POST">
           <div class="form-group">
-              <label for="title" class="form-label mt-4">Title</label>
-              <input type="title" class="form-control" id="title" name="title" placeholder="Enter Title" value="<%= typeof title != 'undefined' ? title : '' %>">
+              <label for="title" class="form-label mt-4">Subject</label>
+              <input type="title" class="form-control" id="title" name="title" placeholder="Enter Subject" value="<%= typeof title != 'undefined' ? title : '' %>">
             </div>
           <div class="form-group">
               <label for="feedback" class="form-label mt-4">Feedback</label>

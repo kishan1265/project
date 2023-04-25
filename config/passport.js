@@ -13,7 +13,7 @@ module.exports = function (passport) {
         email: email,
       }).then((user) => {
         if (!user) {
-          return done(null, false, { message: 'That email is not registered' });
+          return done(null, false, { message: 'This email is not registered' });
         }
 
         // Match password
@@ -47,14 +47,13 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser(function (user_id, cb) {
-      User.findById(user_id)
+    User.findById(user_id)
       .then((user) => {
         cb(null, user);
-      // return cb(null, user);
+        // return cb(null, user);
       })
       .catch((err) => {
         cb(err);
       });
-    
   });
 };
