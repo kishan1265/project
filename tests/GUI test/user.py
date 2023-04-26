@@ -42,9 +42,17 @@ nav_link.click()
 nav_link = driver.find_element("link text", "Home")
 nav_link.click()
 
-driver.execute_script("window.scrollBy(0, 1632);")
+driver.execute_script("window.scrollBy(0, window.innerHeight); \
+                        var start_time = new Date().getTime(); \
+                        while (new Date().getTime() - start_time < 2000);")
 
-driver.execute_script("window.scrollBy(0, -1632);")
+driver.execute_script("window.scrollBy(0, window.innerHeight); \
+                        var start_time = new Date().getTime(); \
+                        while (new Date().getTime() - start_time < 2000);")
+
+# driver.execute_script("window.scrollBy(0, 1632);")
+
+# driver.execute_script("window.scrollBy(0, -1632);")
 
 nav_link = driver.find_element("link text", "Profile")
 nav_link.click()
@@ -53,15 +61,19 @@ edit_button = driver.find_element("link text", "Edit")
 edit_button.click()
 
 name_field = driver.find_element("xpath","//input[@name='name']")
+name_field.clear()
 name_field.send_keys("patel krunal")
 
-dropdown_element1 = driver.find_element_by_id("exampleSelect1")
+dropdown_element1 = driver.find_element(By.ID,"exampleSelect1")
+select = Select(dropdown_element1)
 
-dropdown_element1.select_by_value("B.Tech - ICT")
+select.select_by_value("B.Tech - ICT")
 
-dropdown_element2 = driver.find_element_by_id("exampleSelect1")
+dropdown_element2 = driver.find_element(By.ID,"exampleSelect2")
 
-dropdown_element2.select_by_value("option_value")
+select = Select(dropdown_element2)
+
+select.select_by_value("2nd Year")
 
 password_field = driver.find_element("xpath","//input[@name='address']")
 password_field.send_keys("ganthinagar, gujrat")
