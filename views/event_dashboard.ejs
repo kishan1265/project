@@ -35,8 +35,10 @@
                                     <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
                                         onclick="participant(this.id)" key="<%= event._id %>">Participant</button>
                                     <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
-                                        onclick="delete_participant(this.id)" key="<%= event._id %>">Delete
+                                        onclick="delete_event(this.id)" key="<%= event._id %>">Delete
                                         Event</button>
+                                    <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
+                                        onclick="edit_event(this.id)" key="<%= event._id %>">Edit</button>
                                     <!-- </form> -->
                                 </div>
                             </div>
@@ -61,7 +63,7 @@
         window.location.href = "/admin/participate/" + `${id}`;
     }
 
-    function delete_participant(id) {
+    function delete_event(id) {
 
         const event_id = id;
 
@@ -80,5 +82,10 @@
         alert("Event deleted Success");
         const element = document.getElementById(event_id);
         element.remove();
+    }
+
+    function edit_event(id) {
+        console.log(id)
+        window.location.href = "/admin/edit_event/" + `${id}`;
     }
 </script>

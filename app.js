@@ -86,6 +86,12 @@ app.use('/users', require('./routes/users.js'));
 app.use('/admin', require('./routes/admin.js'));
 app.use('/resource', require('./routes/resource.js'));
 app.use('/admin/resource', require('./routes/admin_resource.js'));
+
+// bad request handling
+app.all('*', (req, res) => {
+  res.status(404).send('<h1>404 Page not found</h1>');
+  next();
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server running on  ${PORT}`));

@@ -20,11 +20,12 @@
                     </thead>
                     <tbody>
                     <% user_data.forEach(function (reg_user,index) { %>
-                    <tr class="table-primary">
+                    <tr class="table-primary" id="<%= reg_user._id %>">
                         <th scope="row"> <%= reg_user.email.substr(0,9) %></th>
                         <td><%= reg_user.name %></td>
                         <td><%= reg_user.programe %></td>
                         <td><%= reg_user.batch %></td>
+                        <td><button class="btn btn-danger btn-sm rounded-0" id="<%= reg_user._id %>" key = "<%= reg_user._id %>" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onclick="delete_user(this.id)"><i class="fa fa-trash"></i></button></td>
                     </tr>
                     <% }) %>
                     </tbody>
@@ -45,3 +46,27 @@
         }
     }
 </style>
+
+<script>
+    function delete_user(id) {
+
+        const user_id = id;
+
+        const data = {
+            user_id: user_id
+        }
+
+        fetch(`/admin/delete_user`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        alert("User deleted Success");
+        const element = document.getElementById(user_id);
+        element.remove();
+    }
+
+</script>

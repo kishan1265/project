@@ -105,6 +105,8 @@ router.post('/event', function (req, res) {
 
   Event.findOne({ _id: event_id }).then((event) => {
     if (event.participants.includes(user_id)) {
+      // alert('You have already registered for this event');
+      //res.send(201);
     } else {
       updatedEvent = async (req, res) => {
         await Event.findByIdAndUpdate(
@@ -118,10 +120,64 @@ router.post('/event', function (req, res) {
         );
       };
       updatedEvent();
+      // alert('You have successfully registered for the event');
     }
   });
 
-  res.redirect('/event');
+  //res.redirect('/event');
+  //res.status(200).json({ status: 'success' });
+  //alert('You have successfully registered for the event <%= event.name %>');
+  //console.log(req.user.name);
+});
+
+router.post('/event/deregister', function (req, res) {
+  //console.log(req.body.event_id);
+  const event_id = req.body.event_id;
+  const user_id = req.body.user_id;
+
+  Event.findOne({ _id: event_id }).then((event) => {
+    // if (event.participants.includes(user_id)) {
+    //   departicipant = async (req, res) => {
+    //     await Event.findByIdAndUpdate(
+    //       event_id,
+    //       {
+    //         //$pop: { participants: user_id },
+    //         //$pop,
+    //         $pull: { participants: user_id },
+    //       },
+    //       {
+    //         new: true,
+    //       }
+    //     );
+    //     departicipant();
+    //   };
+    // } else {
+    //   console.log('You are not registered for this event');
+    //   // alert('You have successfully registered for the event');
+    // }
+    Event.findByIdAndUpdate(
+      event_id,
+      {
+        $pull: { participants: user_id },
+      },
+      {
+        new: true, // Return the updated event object
+      }
+    )
+      .then((updatedEvent) => {
+        // Handle the updated event object
+        // req.flash(
+        //   'success_msg',
+        //   'You have successfully deregistered for the event'
+        // );
+        //res.redirect('/event');
+      })
+      .catch((err) => {
+        // Handle the error
+        console.log(err);
+      });
+  });
+  //res.redirect('/event');
   //res.status(200).json({ status: 'success' });
   //alert('You have successfully registered for the event <%= event.name %>');
   //console.log(req.user.name);

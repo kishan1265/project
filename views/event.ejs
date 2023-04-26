@@ -18,6 +18,7 @@
                   <p class="card-text"><%= practice.description %></p>
                   <!-- <form action="/event" method="post"> -->
                     <button type="button" id="<%= practice._id %>" class="btn btn-success btn-sm" onclick ="register(this.id)" key = "<%= practice._id %>" >Register</button>
+                    <button type="button" id="<%= practice._id %>" class="btn btn-success btn-sm" onclick ="deregister(this.id)" key = "<%= practice._id %>" >Deregister</button>
                   <!-- </form> -->
                 </div>
             </div>
@@ -28,6 +29,7 @@
 </body>
 
 <script>
+
     const register = (id) => {
         //console.log(id);
         // var e = document.getElementById(id).attributes;
@@ -49,9 +51,48 @@
             body : JSON.stringify(eventdata),
         })
 
+        // success = function(res){
+        //     console.log(res)
+        //     if(res.status == 200){
+        //         alert("Registered Successfully");
+        //         window.location.href = "/event";
+        //     }
+        //     else{
+        //         alert("Already Registered");
+        //     }
+        // }
+
         alert("Registered Successfully");
 
+        //reload the page
+        window.location.href = "/event";
   };
+
+  const deregister = (id) => {
+        //console.log(id);
+        // var e = document.getElementById(id).attributes;
+        // console.log(e);
+
+        const eventdata = {
+            event_id : id,
+            user_id : "<%= user._id %>"
+        }
+
+        // console.log(eventdata)
+        // console.log(JSON.stringify(eventdata))
+
+        fetch('/event/deregister',{
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(eventdata),
+        })
+        alert("Deregistered Successfully");
+        window.location.href = "/event";
+
+  };
+  
 </script>
 
 <style>
