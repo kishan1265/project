@@ -17,7 +17,7 @@
                   <p class="card-text"><b>Date : </b><%= feedback.date %></p>
                   <p class="card-text"><b>Messages : </b><%= feedback.feedback %></p>
                   <!-- <form action="/event" method="post"> -->
-                  <button type="button" id="<%= feedback._id %>" class="btn btn-success btn-sm mx-2" onclick ="query_solve(this.id)" key = "<%= feedback._id %>" >Query Solved</button>
+                  <button type="button" id="<%= feedback._id %>" class="btn solved btn-success btn-sm mx-2" onclick ="query_solve(this.id)" key = "<%= feedback._id %>" >Query Solved</button>
                   <!-- </form> -->
                 </div>
             </div>
