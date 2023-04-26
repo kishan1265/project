@@ -17,11 +17,13 @@
               <p class="card-text"><b>Description : </b><%= resource.description %></p>
               <!-- <form action="/resource" method="post"> -->
               <!-- <button type="button" id="<%= resource._id %>" class="btn btn-primary btn-sm mx-2" onclick ="perticular_resource(this.id)" key = "<%= resource._id %>" >Read more</button> -->
-              <button type="button" id="<%= resource._id %>" class="btn btn-success btn-sm mx-2" onclick="window.open('<%= resource.link%>')" key = "<%= resource._id %>" >Explore</button>
+              <div class="button">
+                <button type="button" id="<%= resource._id %>" class="btn explore btn-success btn-sm mx-1" onclick="window.open('<%= resource.link%>')" key = "<%= resource._id %>" >Explore</button>
                 <% if (is_admin || is_member) { %>
                 <button type="button" id="<%= resource._id %>" class="btn btn-success btn-sm mx-2" onclick ="delete_resource(this.id)" key = "<%= resource._id %>" >Delete resource</button>
                 <button type="button" id="<%= resource._id %>" class="btn btn-success btn-sm mx-2" onclick ="update_resource(this.id)" key = "<%= resource._id %>" >update resource</button>
                 <% } %>
+              </div>
               <!-- </form> -->
             </div>
         </div>
@@ -37,6 +39,26 @@
         display : flex;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    @media screen and (max-width: 500px) {
+        .btn{
+            display: flex;
+            width: 33%;
+            font-size: 85%;     
+            justify-content: center; 
+            margin-bottom: 3%;      
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+        }
+        .main_container{
+            margin: 25px;
+        }   
+        .explore{
+            padding-top: 4%;
+        }  
     }
 
 </style>

@@ -32,13 +32,16 @@
                                         <%= event.description %>
                                     </p>
                                     <!-- <form action="/event" method="post"> -->
-                                    <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
-                                        onclick="participant(this.id)" key="<%= event._id %>">Participant</button>
-                                    <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
-                                        onclick="delete_event(this.id)" key="<%= event._id %>">Delete
-                                        Event</button>
-                                    <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
-                                        onclick="edit_event(this.id)" key="<%= event._id %>">Edit</button>
+                                    <div class="button">
+                                        <button type="button" id="<%= event._id %>" class="btn explore btn-success btn-sm mx-2"
+                                            onclick="participant(this.id)" key="<%= event._id %>">Participant</button>
+                                        <button type="button" id="<%= event._id %>" class="btn btn-success btn-sm mx-2"
+                                            onclick="delete_event(this.id)" key="<%= event._id %>">Delete
+                                            Event</button>
+                                        <button type="button" id="<%= event._id %>" class="btn explore btn-success btn-sm mx-2"
+                                            onclick="edit_event(this.id)" key="<%= event._id %>">Edit</button>
+                                    </div>
+                                    
                                     <!-- </form> -->
                                 </div>
                             </div>
@@ -47,15 +50,40 @@
 
         </div>
 
-        <style>
-            .main_container {
-                margin: 50px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-        </style>
 </body>
+
+<style>
+    .main_container {
+        margin: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    @media screen and (max-width: 400px) {
+        .main_container {
+            margin: 0px;
+        }
+        
+    }
+
+    @media screen and (max-width: 500px) {
+        .btn{
+            display: flex;
+            width: 33%;
+            font-size: 85%;     
+            justify-content: center; 
+            margin-bottom: 3%;      
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+        }  
+        .explore{
+            padding-top: 4%;
+        }  
+    }
+</style>
 
 <script>
     function participant(id) {

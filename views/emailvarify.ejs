@@ -1,10 +1,24 @@
 <body class="bg-light">
-  
-  <div class="card" style="width: 60rem; margin-left: 18rem; margin-top: 15rem;">
-    <h5 class="card-header">Check Email</h5>
+  <div class="card bg-dark">
+    <div class="card-header">Check Email</div>
     <div class="card-body">
-      <p class="card-text">Kindly check your mailbox we have share change password link to your register mail id <%- email %>
-      </div></p>
+      
+      <p class="card-text">Kindly check your mailbox we have share change password link to your register mail id <%- email %></p>
     </div>
   </div>
-</body>  
+</body>
+
+<style>
+  .card{
+    margin-top: 20%;
+    margin-left: 25%;
+    color: white;
+    width: 50%;
+  }
+  @media screen and (max-width:430px) {
+    .card{
+      margin-left: 15%;
+      width: 70%;
+    }
+  }
+</style>
