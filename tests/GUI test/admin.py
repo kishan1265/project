@@ -76,7 +76,7 @@ enter_rsrc_des = driver.find_element("xpath",
 enter_rsrc_des.send_keys("Resource Description")
 
 enter_rsrc_link = driver.find_element("xpath", "//textarea[@name='link']")
-enter_rsrc_link.send_keys("www.google.com")
+enter_rsrc_link.send_keys("https://www.youtube.com/watch?v=zOjov-2OZ0E&ab_channel=freeCodeCamp.org")
 
 time.sleep(2)
 add_rsrc_button = driver.find_element(
@@ -183,6 +183,7 @@ edit_participant_button.click()
 time.sleep(2)
 
 update_E_name = driver.find_element("xpath", "//input[@name='name']")
+update_E_name.clear()
 update_E_name.send_keys("IPC-UPDATE")
 
 update_E_date = driver.find_element("xpath", "//input[@name='date']")
@@ -191,13 +192,16 @@ update_E_date.send_keys(Keys.TAB)
 update_E_date.send_keys("/11/00")
 
 update_E_Duration = driver.find_element("xpath", "//input[@name='duration']")
+update_E_Duration.clear()
 update_E_Duration.send_keys("3")
 
 update_E_venue = driver.find_element("xpath", "//input[@name='venue']")
+update_E_venue.clear()
 update_E_venue.send_keys("Lab Building first floor")
 
 update_E_description = driver.find_element("xpath",
                                            "//textarea[@name='description']")
+update_E_description.clear()
 update_E_description.send_keys(
     "Lab Building is the venue for the event and it is on first floor")
 time.sleep(2)
@@ -269,3 +273,5 @@ time.sleep(2)
 
 logout_link = driver.find_element("link text", 'Logout')
 logout_link.click()
+
+driver.quit()

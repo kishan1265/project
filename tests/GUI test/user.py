@@ -77,7 +77,7 @@ Read_more_button.click()
 time.sleep(2)
 
 driver.switch_to.window(driver.window_handles[-1])
-time.sleep(2)
+time.sleep(5)
 driver.close()
 driver.switch_to.window(driver.window_handles[0])
 
