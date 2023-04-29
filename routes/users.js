@@ -89,7 +89,7 @@ router.post('/register', (req, res) => {
     ) ||
     (email[4] == '0' && email[5] == '0') ||
     email[6] >= '6' ||
-    !(emailcheck > 0 && emailcheck <= 350)
+    !(emailcheck > 0 && emailcheck <= 600)
   ) {
     errors.push({ msg: 'Please Register using correct daiict Id' });
   }
