@@ -123,7 +123,7 @@ time.sleep(2)
 
 address_field = driver.find_element("xpath","//input[@name='address']")
 address_field.clear()
-address_field.send_keys("ganthinagar, gujrat")
+address_field.send_keys("gandhinagar, gujarat")
 
 time.sleep(2)
 
@@ -135,7 +135,6 @@ nav_link.click()
 
 email_field = driver.find_element("xpath","//input[@name='title']")
 email_field.send_keys("checking")
-
 time.sleep(2)
 
 password_field = driver.find_element("xpath","//textarea[@name='feedback']")
@@ -143,8 +142,8 @@ password_field.send_keys("gui testing")
 
 time.sleep(2)
 
-# feedback_button = driver.find_element("xpath","//button[contains(text(), 'Submit Feedback')]")
-# feedback_button.click()
+feedback_button = driver.find_element("xpath","//button[contains(text(), 'Submit Feedback')]")
+feedback_button.click()
 
 nav_link = driver.find_element("link text", "Logout")
 nav_link.click()

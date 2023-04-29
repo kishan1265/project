@@ -135,48 +135,35 @@ router.post('/event/deregister', function (req, res) {
   const event_id = req.body.event_id;
   const user_id = req.body.user_id;
 
+  let participantsexist = true;
+
   Event.findOne({ _id: event_id }).then((event) => {
-    // if (event.participants.includes(user_id)) {
-    //   departicipant = async (req, res) => {
-    //     await Event.findByIdAndUpdate(
-    //       event_id,
-    //       {
-    //         //$pop: { participants: user_id },
-    //         //$pop,
-    //         $pull: { participants: user_id },
-    //       },
-    //       {
-    //         new: true,
-    //       }
-    //     );
-    //     departicipant();
-    //   };
-    // } else {
-    //   console.log('You are not registered for this event');
-    //   // alert('You have successfully registered for the event');
-    // }
-    Event.findByIdAndUpdate(
-      event_id,
-      {
-        $pull: { participants: user_id },
-      },
-      {
-        new: true, // Return the updated event object
-      }
-    )
-      .then((updatedEvent) => {
-        // Handle the updated event object
-        // req.flash(
-        //   'success_msg',
-        //   'You have successfully deregistered for the event'
-        // );
-        //res.redirect('/event');
-      })
-      .catch((err) => {
-        // Handle the error
-        console.log(err);
-      });
+    if (event.participants.includes(user_id)) {
+      Event.findByIdAndUpdate(
+        event_id,
+        {
+          $pull: { participants: user_id },
+        },
+        {
+          new: true, // Return the updated event object
+        }
+      );
+    } else {
+      participantsexist = false;
+    }
   });
+
+  if (participantsexist == 0) {
+    req.flash('error_msg', 'You have not registered for this event');
+    res.redirect('/event');
+  } else {
+    req.flash(
+      'success_msg',
+      'You have successfully deregistered for the event'
+    );
+    res.redirect('/event');
+  }
+
   //res.redirect('/event');
   //res.status(200).json({ status: 'success' });
   //alert('You have successfully registered for the event <%= event.name %>');

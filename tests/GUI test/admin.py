@@ -114,7 +114,7 @@ enter_updt_rsrc_des.send_keys("Updated Resource Description")
 
 enter_updt_rsrc_link = driver.find_element("xpath", "//textarea[@name='link']")
 enter_updt_rsrc_link.clear()
-enter_updt_rsrc_link.send_keys("www.yahoo.com")
+enter_updt_rsrc_link.send_keys("https://www.youtube.com")
 
 time.sleep(2)
 save_change_button = driver.find_element(
@@ -271,7 +271,7 @@ delete_query.click()
 
 time.sleep(2)
 
-logout_link = driver.find_element("link text", 'Logout')
+logout_link = driver.find_element("link text", "Logout")
 logout_link.click()
 
 driver.quit()
