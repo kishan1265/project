@@ -29,7 +29,7 @@ router.get('/forgot', (req, res) => res.render('forgot'));
 
 function isStrongPassword(password) {
   const minLength = 6; // Minimum length requirement
-  const maxLength = 64; // Maximum length requirement
+  const maxLength = 12; // Maximum length requirement
   const hasUpperCase = /[A-Z]/.test(password); // Upper case letters requirement
   const hasLowerCase = /[a-z]/.test(password); // Lower case letters requirement
   const hasNumber = /[0-9]/.test(password); // Numbers requirement
