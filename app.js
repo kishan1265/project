@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-// const marked = require("marked");
-// const MongoStore = require('connect-mongo')(new session);
 
 const app = express();
 // config .env file
@@ -15,16 +13,6 @@ const db = require('./config/keys').MongoURI;
 
 // Passport Config
 require('./config/passport')(passport);
-
-// // Connect to MongoDB
-// mongoose
-//   .connect(db, { useNewUrlParser: true })
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch((err) => console.log(err));
-// Connect to MongoDB
-// mongoose
-//   .createConnection(db, { useNewUrlParser: true },()=>
-//     {console.log('MongoDB Connected')});
 
 // EJS
 app.use(expressLayouts);
@@ -39,31 +27,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: 'secret',
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
 );
-// session store in mongo db
-// const sessionstore = new MongoStore({
-//   mongooseConnection: mongoose.connection,
-//   collection: 'sessions',
-// });
-// // Express session
-// app.use(
-//   session({
-//     secret: 'secret',
-//     // resave: true,
-//     resave: false,
-//     saveUninitialized: true,
-//     store: sessionstore,
-//     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 24 hours
-//   })
-// );
 
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use((req, res, next) => {
   //console.log(req.session);
   //console.log('req.user', req.user);
